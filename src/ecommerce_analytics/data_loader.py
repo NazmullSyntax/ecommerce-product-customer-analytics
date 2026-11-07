@@ -4,7 +4,6 @@ Data Loading Engine Module
 Handles loading CSV datasets safely with explicit verification checks.
 """
 
-from pathlib import Path
 import pandas as pd
 from typing import Dict
 from ecommerce_analytics.config import ConfigManager
@@ -28,7 +27,7 @@ class DataLoader:
         except Exception as e:
             raise IOError(f"Error reading dataset file {filename}: {str(e)}")
 
-    def load_all_datasets((self) -> Dict[str, pd.DataFrame]:
+    def load_all_datasets(self) -> Dict[str, pd.DataFrame]:
         """Loads all Olist e-commerce datasets into a key-value dictionary."""
         files = {
             "customers": "olist_customers_dataset.csv",
