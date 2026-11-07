@@ -1,25 +1,16 @@
 project:
-  name: ecommerce-product-customer-analytics
-  timezone: UTC
+  name: "E-Commerce Product & Customer Behavior Analytics"
+  version: "1.0.0"
+  timezone: "UTC"
 
 paths:
-  raw: data/raw
-  interim: data/interim
-  processed: data/processed
-  reports: reports
+  raw_data: "data/raw"
+  interim_data: "data/interim"
+  processed_data: "data/processed"
+  reports: "reports"
+  sql_scripts: "sql"
 
-files:
-  customers: customers.csv
-  products: products.csv
-  orders: orders.csv
-  order_items: order_items.csv
-
-cleaning:
-  drop_exact_duplicates: true
-  trim_string_values: true
-  missing_customer_id: drop
-  missing_product_id: drop
-
-analysis:
-  currency: USD
-  top_n: 10
+business_rules:
+  currency: "BRL"
+  churn_threshold_days: 90
+  rfm_quantiles: 5
