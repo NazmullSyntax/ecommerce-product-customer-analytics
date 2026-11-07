@@ -1,0 +1,17 @@
+LICENSE
+README.md
+setup.py
+src/ecommerce_analytics/__init__.py
+src/ecommerce_analytics/analysis.py
+src/ecommerce_analytics/cleaning.py
+src/ecommerce_analytics/config.py
+src/ecommerce_analytics/data_loader.py
+src/ecommerce_analytics/transformation.py
+src/ecommerce_analytics/validation.py
+src/ecommerce_analytics/visualization.py
+src/ecommerce_analytics.egg-info/PKG-INFO
+src/ecommerce_analytics.egg-info/SOURCES.txt
+src/ecommerce_analytics.egg-info/dependency_links.txt
+src/ecommerce_analytics.egg-info/top_level.txt
+tests/test_cleaning.py
+tests/test_data_loader.py
