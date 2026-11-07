@@ -1,35 +1,57 @@
-"""Read and write tabular ecommerce data."""
+"""
+Data Loading Engine Module
+--------------------------
+Handles loading CSV datasets safely with explicit verification checks.
+"""
 
 from pathlib import Path
-from typing import Mapping
-
 import pandas as pd
+from typing import Dict
+from ecommerce_analytics.config import ConfigManager
 
+class DataLoader:
+    """Loads and validates input datasets from storage."""
 
-def load_csv(path: str | Path, **read_csv_kwargs: object) -> pd.DataFrame:
-    """Read one CSV file, raising the original filesystem or parser error on failure."""
-    return pd.read_csv(path, **read_csv_kwargs)
+    def __init__(self, config: ConfigManager = None) -> None:
+        self.config = config or ConfigManager()
+        self.raw_data_path = self.config.get_path("raw_data")
 
+    def load_single_csv(self, filename: str) -> pd.DataFrame:
+        """Loads a single raw CSV dataset into a pandas DataFrame."""
+        file_path = self.raw_data_path / filename
+        if not file_path.exists():
+            raise FileNotFoundError(f"Dataset file missing: {file_path}")
+        
+        try:
+            df = pd.read_csv(file_path)
+            return df
+        except Exception as e:
+            raise IOError(f"Error reading dataset file {filename}: {str(e)}")
 
-def load_tables(config: Mapping[str, object]) -> dict[str, pd.DataFrame]:
-    """Load configured CSV tables from the raw data directory."""
-    raw_dir = Path(config["paths"]["raw"])  # type: ignore[index]
-    filenames = config["files"]
-    tables: dict[str, pd.DataFrame] = {}
-    for name, filename in filenames.items():  # type: ignore[union-attr]
-        path = raw_dir / filename
-        if path.exists():
-            tables[name] = load_csv(path)
-    if not tables:
-        raise FileNotFoundError(
-            f"No configured CSV files found in {raw_dir}. Add source data or update config/config.yaml."
-        )
-    return tables
+    def load_all_datasets((self) -> Dict[str, pd.DataFrame]:
+        """Loads all Olist e-commerce datasets into a key-value dictionary."""
+        files = {
+            "customers": "olist_customers_dataset.csv",
+            "orders": "olist_orders_dataset.csv",
+            "order_items": "olist_order_items_dataset.csv",
+            "order_payments": "olist_order_payments_dataset.csv",
+            "order_reviews": "olist_order_reviews_dataset.csv",
+            "products": "olist_products_dataset.csv",
+            "sellers": "olist_sellers_dataset.csv",
+            "category_translation": "product_category_name_translation.csv"
+        }
+        
+        loaded_data = {}
+        for key, fname in files.items():
+            path = self.raw_data_path / fname
+            if path.exists():
+                loaded_data[key] = pd.read_csv(path)
+                print(f"Loaded {key}: {loaded_data[key].shape[0]} rows, {loaded_data[key].shape[1]} columns.")
+            else:
+                print(f"Warning: File {fname} not found in {self.raw_data_path}.")
+                
+        return loaded_data
 
-
-def save_tables(tables: Mapping[str, pd.DataFrame], output_dir: str | Path) -> None:
-    """Save tables as CSV files, creating the destination directory when needed."""
-    destination = Path(output_dir)
-    destination.mkdir(parents=True, exist_ok=True)
-    for name, table in tables.items():
-        table.to_csv(destination / f"{name}.csv", index=False)
+if __name__ == "__main__":
+    loader = DataLoader()
+    print("DataLoader instantiated successfully.")
