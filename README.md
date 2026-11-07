@@ -1,61 +1,88 @@
-# Ecommerce Product & Customer Analytics
+# E-Commerce Product & Customer Behavior Analytics
 
-A starter workspace for understanding ecommerce data, assessing data quality,
-cleaning raw extracts, and analyzing sales, customers, and products.
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon%20Cloud-blue)](https://neon.tech/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-App-red)](https://streamlit.io/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## Project layout
+An end-to-end Business Intelligence, SQL Data Engineering, and Customer Analytics solution analyzing over 100,000 commercial transactions from Brazilian E-Commerce platform **Olist**.
 
-- `data/raw/` — original CSV inputs (ignored by Git)
-- `data/interim/` — validated/cleaned intermediate CSVs (ignored by Git)
-- `data/processed/` — analysis-ready outputs (ignored by Git)
-- `notebooks/` — guided exploration and analysis workflow
-- `src/ecommerce_analytics/` — reusable Python functions
-- `sql/` — starter schema, quality checks, and analysis queries
-- `dashboard/` — location for a Power BI report and exported screenshots
-- `reports/` — business findings and final report templates
+---
 
-## Setup
+## Executive Summary
 
-Use Python 3.10 or newer:
+This project addresses key commercial, merchandising, and operational challenges faced by e-commerce marketplace executives:
+* **Gross Merchandise Value (GMV):** R$ 13.22M generated across 96,478 delivered orders.
+* **Customer Retention Challenge:** Only 3.00% repeat purchase rate, highlighting an acquisition-heavy business model.
+* **Logistics Impact on Sentiment:** Delivery delays cause average review ratings to drop from **4.25 ⭐** (on-time) to **2.25 ⭐** (late), with 1-star negative ratings surging to 53.8%.
+* **Pareto Revenue Drivers:** 18 out of 71 product categories account for 80% of total revenue.
 
-```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-```
+---
 
-In VS Code, select the `.venv` interpreter and open this project folder.
+## Interactive Dashboard Preview
 
-## Add data
+| Executive Overview | Customer Behavior Analytics |
+|---|---|
+| *(Include Screenshot 01)* | *(Include Screenshot 03)* |
 
-Place CSV files in `data/raw/`. The default expected filenames are
-`customers.csv`, `products.csv`, `orders.csv`, and `order_items.csv`; edit
-`config/config.yaml` if your files have other names. Tables are optional at load
-time, but each notebook or metric needs the relevant tables and columns:
+* **Live Web Dashboard:** [Streamlit Web App Link / Looker Studio Link](https://your-dashboard-link.app)
 
-- `orders`: `order_id`, `customer_id`, `order_date`, `revenue` (sales analysis)
-- `customers`: `customer_id` (customer analysis)
-- `products`: `product_id` (product analysis)
-- `order_items`: `product_id`, `price`, `quantity` (product analysis)
+---
 
-Adapt column names and metric definitions to your source system before drawing
-business conclusions. The SQL examples assume a relational schema in
-`sql/database_schema.sql`; date truncation syntax may need adjustment for your
-database engine.
+## Tech Stack & Tools
 
-Raw input files are never modified. The cleaning notebook saves clean table
-copies in `data/interim/`.
+* **Data Analysis & ETL:** Python (`pandas`, `numpy`), VS Code, Jupyter Notebooks.
+* **Data Visualization:** Matplotlib, Seaborn, Plotly Express.
+* **Database & SQL Querying:** Neon Cloud PostgreSQL / SQLite, SQLAlchemy, ANSI SQL (CTEs, Window Functions, `NTILE`, `LAG`).
+* **BI Dashboarding:** Streamlit Community Cloud / Power BI / Google Looker Studio.
+* **Version Control:** Git, GitHub.
 
-## Run
+---
 
-Open notebooks in order in VS Code or Jupyter. Run automated tests from the
-project root:
+## Enterprise Repository Architecture
 
-```powershell
-python -m pytest
-```
-
-Build the Power BI report in Power BI Desktop and save it as
-`dashboard/ecommerce_dashboard.pbix`. Export the four report screenshots to
-`dashboard/screenshots/`. These are output assets, so they are excluded from
-version control by default.
+```text
+ecommerce-product-customer-analytics/
+├── config/                  # Path & business rules configuration
+│   └── config.yaml
+├── data/
+│   ├── raw/                 # Original untouched Olist CSV files
+│   ├── interim/             # Quality-audited intermediate files
+│   └── processed/           # Cleaned, transformed CSV & Parquet files
+├── notebooks/
+│   ├── 01_data_understanding.ipynb
+│   ├── 02_data_quality_assessment.ipynb
+│   ├── 03_data_cleaning.ipynb
+│   ├── 04_exploratory_data_analysis.ipynb
+│   ├── 05_customer_analytics.ipynb
+│   └── 06_product_analytics.ipynb
+├── src/
+│   └── ecommerce_analytics/ # Modular Python Package
+│       ├── config.py
+│       ├── data_loader.py
+│       ├── validation.py
+│       ├── cleaning.py
+│       ├── transformation.py
+│       ├── quality_assessment.py
+│       ├── analysis.py
+│       ├── visualization.py
+│       ├── db_engine.py
+│       ├── customer_analytics.py
+│       └── product_analytics.py
+├── sql/                     # 25 Business SQL Queries
+│   ├── database_schema.sql
+│   ├── sales_analysis.sql
+│   ├── product_analysis.sql
+│   ├── customer_analysis.sql
+│   └── advanced_queries.sql
+├── dashboard/
+│   └── app.py               # Interactive Streamlit Web Application
+├── reports/                 # Strategic Insights & Business Reports
+│   ├── figures/
+│   ├── business_insights.md
+│   └── final_report.md
+├── requirements.txt
+├── setup.py                 # Local editable package setup
+├── .env.example
+├── .gitignore
+└── README.md
