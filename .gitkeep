@@ -1,0 +1,3 @@
+type nul > data\raw\.gitkeep
+type nul > data\interim\.gitkeep
+type nul > data\processed\.gitkeep

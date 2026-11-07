@@ -1,0 +1,25 @@
+project:
+  name: ecommerce-product-customer-analytics
+  timezone: UTC
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  reports: reports
+
+files:
+  customers: customers.csv
+  products: products.csv
+  orders: orders.csv
+  order_items: order_items.csv
+
+cleaning:
+  drop_exact_duplicates: true
+  trim_string_values: true
+  missing_customer_id: drop
+  missing_product_id: drop
+
+analysis:
+  currency: USD
+  top_n: 10

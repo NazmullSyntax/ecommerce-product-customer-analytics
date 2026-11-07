@@ -1,0 +1,29 @@
+# Python Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python Cache & Compiled Files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Raw & interim Data Files (Prevents uploading large dataset files to GitHub)
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Environment & Credentials
+.env
+*.env
+config/secrets.yaml
+
+# VS Code User Settings & Power BI Autosave
+.vscode/settings.json
+*.tmp
+*.pbix.auto
