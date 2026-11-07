@@ -1,12 +1,11 @@
-# Business insights
-
-Use this document to record validated findings, their supporting metrics, and
-recommended actions after loading and analyzing the source data.
-
-## Findings
-
-- _Add evidence-backed insight._
-
-## Recommendations
-
-- _Add an actionable recommendation and its expected measure of success._
+#,Business Domain,Key Finding,Supporting Metric,Business Significance,Actionable Recommendation,Analytical Limitation
+1,Revenue & Volume,"Platform gross merchandise value (GMV) reached R$ 13.22M from 96,478 delivered orders.","Total Revenue = R$ 13.22M; Total Delivered Orders = 96,478; AOV = R$ 137.04.","Stable commercial foundation with consistent basket size, but single-item checkouts dominate.","Introduce dynamic bundle discounts (e.g., ""Buy 2 Get 10% Off"") to lift AOV above R$ 150.",Product cost structure (COGS) is unavailable in public data.
+2,Geographic Density,Sales are concentrated in the Southeast region of Brazil.,"São Paulo (SP), Rio de Janeiro (RJ), and Minas Gerais (MG) account for >60% of total revenue.",Regional reliance creates revenue vulnerability if logistics fail in SP/RJ.,Establish regional seller onboarding initiatives outside SP to diversify supply nodes.,Customer population density is not normalized.
+3,Payment Dynamics,Credit card payment is the primary transaction driver.,"Credit cards generate 75%+ of total payment value, averaging 3.5 installments per transaction.",Customers rely heavily on installment financing for higher-priced purchases.,Partner with fintech payment gateways to offer interest-free micro-financing options.,Merchant transaction processing fee structures are unknown.
+4,Customer Retention,Platform exhibits a low repeat purchase rate.,"Repeat Purchase Rate = 3.00% (2,801 out of 93,358 unique customers).",Olist operates primarily as a first-time customer acquisition channel rather than a high-retention storefront.,Launch automated post-purchase email flows with targeted promo vouchers 30 days post-delivery.,Lack of direct marketing communication tracking data.
+5,Customer Segmentation,"RFM analysis reveals a large ""Hibernating High Value"" customer segment.","17.51% of customers fall under ""Hibernating High Value"" (high historic spend, >300 days inactive).",Significant lost revenue from previously active high-value spenders.,Deploy targeted win-back campaigns offering exclusive discounts to high historic spenders.,Customer demographic data is limited to state/city.
+6,Category Distribution,Pareto 80/20 rule applies to product category revenue.,Top 18 out of 71 categories generate 80% of total gross platform revenue.,"Merchandising success depends heavily on core categories (health_beauty, watches_gifts, bed_bath_table).",Focus seller acquisition efforts on core categories while pruning underperforming tail listings.,Seasonality impact on category selection was not modeled separately.
+7,Freight Friction,Bulky items face severe shipping cost friction.,Categories like office_furniture show freight-to-price ratios exceeding 28%.,High shipping costs relative to product price cause checkout cart abandonment.,Negotiate bulk carrier freight rates or establish regional fulfillment hubs for heavy categories.,Dimensional weight vs actual weight is not explicitly separated per shipment.
+8,Logistics Bottlenecks,Northern and Northeastern states suffer from severe delivery delays.,"States like AL, MA, and AP average >20 days delivery time with late delivery rates exceeding 15%.",Extended transit times harm customer satisfaction in remote regions.,Partner with local regional carriers in Northern Brazil to establish fulfillment relay nodes.,Carrier route operational data is unavailable.
+9,Review Scores,Delivery delays cause customer review score degradation.,"On-time orders average 4.25 ⭐, while late orders drop to 2.25 ⭐ with 53.8% 1-star ratings.",Delivery speed is the single largest operational driver of negative customer sentiment.,Implement strict seller dispatch SLAs and automated late-delivery warning triggers.,Sentiment analysis on review comment text was not performed.
+10,Order Timings,Customer purchasing peaks during afternoon and evening hours.,Peak transaction window occurs between 14:00 (2 PM) and 21:00 (9 PM).,Platform server traffic and customer support loads spike during these hours.,Schedule flash sales and marketing push notifications between 14:00 and 18:00.,Real-time website session traffic (impressions/clicks) is absent.
